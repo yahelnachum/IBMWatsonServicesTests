@@ -7,7 +7,7 @@ import java.util.Map;
 import com.ibm.watson.developer_cloud.speech_to_text.v1.SpeechToText;
 import com.ibm.watson.developer_cloud.speech_to_text.v1.model.SpeechResults;
 
-public class Main {
+public class TestIBMService {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -20,7 +20,7 @@ public class Main {
 
 		String audioFile1 = "./audioFiles/Homer_Simpson_-_Help_me_Lisa_I_have_serious_Mental.flac";
 		String audioFile2 = "./audioFiles/short_audio.flac";
-		File audio = new File(audioFile2);
+		File audio = new File(audioFile1);
 		System.out.println("File exists: " + audio.exists());
 		Map params = new HashMap();
 		params.put("audio", audio);
