@@ -1,36 +1,34 @@
 package testIBMSpeechToTextApp;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.TargetDataLine;
 
 public class TestMicrophoneStreaming {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		TargetDataLine line;
+    /**
+     * Entry to run the program
+     */
+    public static void main(String[] args) {
+        final JavaSoundRecorder recorder = new JavaSoundRecorder();
+ 
+        // creates a new thread that waits for a specified
+        // of time before stopping
+        Thread stopper = new Thread(new Runnable() {
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+                recorder.finish();
+            }
+        });
+ 
+        stopper.start();
+ 
+        // start recording
+        recorder.start();
 		
-		float sampleRate = 8000;
-		int sampleSizeInBits = 8;
-		int channels = 1;
-		boolean signed = true;
-		boolean bigEndian = true;
-		AudioFormat format = new AudioFormat(sampleRate, sampleSizeInBits, channels, signed, bigEndian);
-		DataLine.Info info = new DataLine.Info(TargetDataLine.class, 
-		    format); // format is an AudioFormat object
-		if (!AudioSystem.isLineSupported(info)) {
-		    // Handle the error ... 
-
-		}
-		// Obtain and open the line.
+		
+		/*// Obtain and open the line.
 		try {
 		    line = (TargetDataLine) AudioSystem.getLine(info);
 		    line.open(format);
@@ -70,7 +68,7 @@ public class TestMicrophoneStreaming {
 			}
 		} catch (LineUnavailableException ex) {
 		    // Handle the error ... 
-		}
+		}*/
 	}
 
 }
