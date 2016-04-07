@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+<body>
+Hello World
+
+<script type="text/javascript">
+
+var oReq = new XMLHttpRequest();
+oReq.open("GET", "/myAudio", true);
+oReq.responseType = "blob";
+
+oReq.onload = function(oEvent) {
+  var blob = oReq.response;
+
+  var token = "X52nB7MTGiitrKdoH8tFAGMjUlJwc1OBqTu%2F3sHSQZKEvhcQ5WKzc0vDCRNpKFQ0Qi6NKKensDbu4CHUiVTIoCxUQj%2Bz910m4O5Ijj6CuG7hoovXoNVs7xa3vDJwoCC310WA2Sw4UAnIz9QkC0sONVeZjsbcoBakS20CezHrn07sQPiQRA1rPBmskS1NXzn2tw9Wm6VN0dMFBirUcrcBHMaWVHk4rU%2Bx%2BeJom5lkvJtpfXq1ztlBrX4upqpXUMSNa7YUiCVDS6GrpUkmEC1CfO1qauXDYCjt3EFrbk4TFSgMSL%2F0MDpGMu%2BoQvXEexBMUWWcpiLdT236oNsJs8FmNOflov6Wpw%2FnLOQ4gQpHfQF9Fb5amO8WuwEolrelUb1YCTpV0VnFRWpO04GxtJQ0jR2vrrBxZsznK0mQu7uqDuxOxr5Cm3pS%2B7NCi9QTcjZWEX%2BESpMg0eK3eHfRCN%2FDjE0EoqiMssnc51Q8U04KkuwwD5g7HCPCaY7YGBQKsCuv4BqWLw7hC9ROgb%2Fz070fNW7i42BWairuoRiAGkfvmkFyCDz7Tx%2FMbwYk9oujYjioyIUE7MzUOydzWQuoGQF3h8N%2B%2BvgUPEwGk2IDQGirG%2BLOsuJIv8Wssnk0smLHJuIsSi4jCs0QKx9U571LQ2vw2%2BlYyAeS036Zf%2Bu%2FXlhHjlUkGhTWsDG%2BLOqt8nuY0ZNimZWBQoC1Ia5zgfVeIxzbKrzxyQsVBhXLo%2BgQJT%2BkJ1OdiAC3qo03793m%2FtuzAbOz0OCbdNEhR%2FmpoWLwpIq%2FSjgYeYeodGLm75m7MebqdKzZx%2FIL05lIFmwkM21YlaOkwa04g9bMys%2FaeJOpNx1aG5Hvl5rcSFK7";
+  var wsURI = "wss://stream.watsonplatform.net/speech-to-text/api/v1/recognize?watson-token=" + token;
+  var websocket = new WebSocket(wsURI);
+
+  websocket.onopen = function(evt) { onOpen(evt) };
+  websocket.onclose = function(evt) { onClose(evt) };
+  websocket.onmessage = function(evt) { onMessage(evt) };
+  websocket.onerror = function(evt) { onError(evt) };
+
+  function onOpen(evt){
+    console.log(JSON.stringify(evt));
+    var message = {'action': 'start', 'content-type': 'audio/flac;rate=22050'};
+    websocket.send(JSON.stringify(message));
+    websocket.send(blob);
+  }
+  function onClose(evt){
+    var msg = JSON.parse(evt.data);
+    console.log(msg);
+  }
+  function onMessage(evt){
+    var msg = JSON.parse(evt.data);
+    console.log(msg);
+    if (msg.state === 'listening') {
+      console.log('in listening state');
+    }
+  }
+  function onError(evt){
+    var msg = JSON.parse(evt.data);
+    console.log(msg);
+  }
+};
+
+oReq.send();
+
+</script>
+
+</body>
+</html>
