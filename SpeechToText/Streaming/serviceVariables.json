@@ -1,0 +1,9 @@
+{
+	"speech_to_text": {
+		"credentials": {
+		"password": "xxxxxxxxxxxx",
+		"url": "https://gateway.watsonplatform.net/tradeoff-analytics-beta/api",
+		"username": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+		}
+	}
+}
