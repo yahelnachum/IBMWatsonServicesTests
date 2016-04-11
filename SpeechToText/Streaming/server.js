@@ -22,7 +22,15 @@ app.get('/test', function(req, res) {
 	console.log('entering: app.get("/test")');
 	var credentials = extend(config, getSpeechToTextCredentials());
 	var authorization = watson.authorization(getSpeechToTextCredentials());
-	res.end();
+	authorization.getToken({url: credentials.url}, function(err, token) {
+	      if (err) {
+	         console.log('error:', err);
+	         res.status(err.code);
+	      }
+	      res.send(token);
+	      res.end();
+	});
+	
 	console.log('exiting : app.get("/test")');
 });
 

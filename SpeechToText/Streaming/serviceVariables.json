@@ -1,10 +1,10 @@
 {
 	"speech_to_text": {
 		"credentials": {
-			"version": "46dd5dba-b0ff-4e81-b90f-88f8b14e08d4",
+			"version": "v1",
 			"url": "https://stream.watsonplatform.net/speech-to-text/api",
-			"username": "46dd5dba-b0ff-4e81-b90f-88f8b14e08d4",
-			"password": "FiBgJQUX11hg"
+			"username": "1e3eacc7-03a5-4448-9053-9092e38f5d90",
+			"password": "uD45nLN3Jtvl"
 		}
 	}
 }
