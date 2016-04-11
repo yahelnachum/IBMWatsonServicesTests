@@ -19,8 +19,8 @@
   <dependencies>
   	<dependency>
   		<groupId>com.ibm.watson.developer_cloud</groupId>
-  		<artifactId>java-wrapper</artifactId>
-  		<version>0.1.9</version>
+  		<artifactId>java-sdk</artifactId>
+  		<version>2.9.0</version>
   	</dependency>
   	<dependency>
   		<groupId>javax</groupId>

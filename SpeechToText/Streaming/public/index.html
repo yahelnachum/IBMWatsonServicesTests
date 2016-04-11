@@ -42,25 +42,14 @@ function openWebsocketWithToken(token){
 			var state = (JSON.parse(evt.data)).state;
 			console.log(state.indexOf("listening") == 0);
 			if(state.indexOf("listening") == 0){
-				console.log("yes");
-				requestAudio(websocket);
+
 			}
 		};
 		function onError(evt){
 			console.log(evt);
 		};   
 };
-var xhttpAudio = new XMLHttpRequest();
-function requestAudio(websocket){
-	
-	xhttpAudio.onreadystatechange = recieveAudio;
-	xhttpAudio.open("GET", "/audio", true);
-	xhttpAudio.send();
-	
-	function recieveAudio(){
-			websocket.send(xhttpAudio.responseText);
-	}
-}
+
 
 
 </script>

@@ -35,18 +35,6 @@ app.get('/test', function(req, res) {
 	console.log('exiting : app.get("/test")');
 });
 
-app.get('/audio', function(req, res) {
-	console.log('entering: app.get("/audio")');
-	fs.readFile(path.join(__dirname, '/public/short_audio.flac'), function read(err, data) {
-	    if (err) {
-	        throw err;
-	    }
-	    res.write(data);
-	    console.log("hi");
-	});
-	console.log('exiting : app.get("/audio")');
-});
-
 function getSpeechToTextCredentials(){
 	var serviceVariables = fs.readFileSync(path.join(__dirname, "serviceVariables.json")).toString();
 	serviceVariables = JSON.parse(serviceVariables);
