@@ -27,6 +27,7 @@ app.get('/test', function(req, res) {
 	         console.log('error:', err);
 	         res.status(err.code);
 	      }
+	      console.log(token);
 	      res.send(token);
 	      res.end();
 	});

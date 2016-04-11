@@ -2,4 +2,38 @@
 <body>
 hello world!!!
 </body>
+
+<script>
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+	if (xhttp.readyState == 4 && xhttp.status == 200) {
+		var token = xhttp.responseText;
+		console.log(token);
+		var wsURI = "wss://stream.watsonplatform.net/speech-to-text/api/v1/recognize?watson-token=" + token;
+		console.log(wsURI);
+		var websocket = new WebSocket(wsURI);
+		websocket.onopen = function(evt) { onOpen(evt) };
+		websocket.onclose = function(evt) { onClose(evt) };
+		websocket.onmessage = function(evt) { onMessage(evt) };
+		websocket.onerror = function(evt) { onError(evt) };
+		
+		function onOpen(evt){
+			console.log(evt);
+			var message = {"action": "start", "content-type": "audio/l16;rate=22050"};
+			websocket.send(JSON.stringify(message));
+		};
+		function onClose(evt){
+			console.log(evt);
+		};
+		function onMessage(evt){
+			console.log(evt);
+		};
+		function onError(evt){
+			console.log(evt);
+		};   
+	}
+};
+xhttp.open("GET", "/test", true);
+xhttp.send();
+</script>
 </html>
