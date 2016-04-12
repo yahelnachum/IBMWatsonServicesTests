@@ -60,7 +60,7 @@ public class TestMicrophoneToIBMServiceStreaming {
 	            AudioInputStream ais = new AudioInputStream(line);
 	 
 	            System.out.println("Start recording...");
-	            AudioSystem.write(ais, fileType, wavFile);
+	 
 	            // start recording
 				 SpeechToText service = new SpeechToText();
 				   service.setUsernameAndPassword("1e3eacc7-03a5-4448-9053-9092e38f5d90", "uD45nLN3Jtvl");
@@ -79,7 +79,7 @@ public class TestMicrophoneToIBMServiceStreaming {
 				     }
 				   );
 				   System.out.println("Done1");  
-	            
+	            AudioSystem.write(ais, fileType, wavFile);
 	            System.out.println("Done");
 	 
 	        } catch (LineUnavailableException ex) {
